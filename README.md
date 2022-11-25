@@ -10,11 +10,11 @@ Endpoints:
 
 
 ```
-GET		/books/
-GET		/books/<id>
-POST	/books
-PUT		/books/<id>
-DELETE	/books/<id>
+GET     /books/
+GET     /books/<id>
+POST    /books
+PUT     /books/<id>
+DELETE  /books/<id>
 ```
 
 Book JSON example to POST / PUT
