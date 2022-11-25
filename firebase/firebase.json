@@ -1,0 +1,14 @@
+{
+  "emulators": {
+    "firestore": {
+      "host": "0.0.0.0",
+      "port": 4242
+    },
+    "ui": {
+      "enabled": true,
+      "host": "0.0.0.0",
+      "port": 4343
+    },
+    "singleProjectMode": true
+  }
+}

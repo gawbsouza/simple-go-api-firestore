@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+
+  app:
+    build: ./app
+    ports:
+      - 4042:4042
+
+  firebase:
+    build: ./firebase
+    ports:
+      - 4242:4242
+      - 4343:4343
