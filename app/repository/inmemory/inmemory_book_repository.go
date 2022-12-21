@@ -4,6 +4,8 @@ import (
 	"errors"
 	"library/entity"
 	"library/repository"
+
+	"github.com/google/uuid"
 )
 
 type rep struct {
@@ -23,4 +25,18 @@ func (r *rep) SelectById(id string) (*entity.Book, error) {
 	}
 
 	return nil, errors.New("Book not found")
+}
+
+func (r *rep) Insert(b *entity.Book) (*entity.Book, error) {
+
+	newID := uuid.NewString()
+
+	if b.ID != "" {
+		newID = b.ID
+	}
+
+	r.memory[newID] = b
+	b.ID = newID
+
+	return b, nil
 }
