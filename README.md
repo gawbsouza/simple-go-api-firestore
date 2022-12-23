@@ -10,7 +10,7 @@ Endpoints:
 
 
 ```
-GET     /books/
+GET     /books
 GET     /books/<id>
 POST    /books
 PUT     /books/<id>
@@ -24,8 +24,8 @@ Book JSON example to POST / PUT
     "authors": [
         "gabriel"
     ],
-    "editions": 1,
+    "edition": 1,
     "year": 2022,
-    "category": "tech"
+    "pages": 230
 }
 ```
