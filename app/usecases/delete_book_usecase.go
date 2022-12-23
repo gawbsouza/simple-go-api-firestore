@@ -37,6 +37,9 @@ func (u *deleteBookUseCase) Execute(input *DeleteBookUseCaseInputDTO) error {
 
 	err = u.repository.Delete(input.ID)
 	if err != nil {
+		if err.Error() == "Book not found" {
+			return err
+		}
 		return errors.New("Error when deleting book from repository")
 	}
 

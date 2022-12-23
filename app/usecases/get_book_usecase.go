@@ -48,6 +48,9 @@ func (u *getBookUseCase) Execute(input *GetBookUseCaseInputDTO) (*GetBookUseCase
 	book, err := u.repository.SelectById(input.ID)
 
 	if err != nil {
+		if err.Error() == "Book not found" {
+			return nil, err
+		}
 		return nil, errors.New("Error when getting book from repository")
 	}
 

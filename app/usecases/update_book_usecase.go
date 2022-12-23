@@ -61,6 +61,9 @@ func (u *updateBookUseCase) Execute(input *UpdateBookUseCaseInputDTO) (*UpdateBo
 
 	err = u.repository.Update(toUpdate)
 	if err != nil {
+		if err.Error() == "Book not found" {
+			return nil, err
+		}
 		return nil, errors.New("Error when updating book")
 	}
 
