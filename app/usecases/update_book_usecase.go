@@ -12,7 +12,7 @@ type UpdateBookUseCase interface {
 }
 
 type UpdateBookUseCaseInputDTO struct {
-	ID      string   `validate:"requerid"`
+	ID      string   `validate:"required"`
 	Title   string   `validate:"required"`
 	Authors []string `validate:"min=1"`
 	Year    int      `validate:"gt=0"`
