@@ -1,16 +1,41 @@
 package main
 
 import (
+	"library/http/controller"
+	repository "library/repository/inmemory"
+	"library/usecases"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 
+	// Repositories
+	bookRepository := repository.NewInMemoryBookRepository()
+
+	// Usecases
+	getAllBooksUseCase := usecases.NewGetAllBooksUseCase(bookRepository)
+	getBookUseCase := usecases.NewGetBookUseCase(bookRepository)
+	createBookUseCase := usecases.NewCreateBookUseCase(bookRepository)
+	deleteBookUseCase := usecases.NewDeleteBookUseCase(bookRepository)
+	updateBookUseCase := usecases.NewUpdateBookUseCase(bookRepository)
+
+	// Controllers
+	getAllBooksController := controller.GetAllBooksController(getAllBooksUseCase)
+	getBookController := controller.GetBookController(getBookUseCase)
+	createBookController := controller.CreateBookController(createBookUseCase)
+	deleteBookController := controller.DeleteBookController(deleteBookUseCase)
+	updateBookController := controller.UpdateBookController(updateBookUseCase)
+
 	r := gin.Default()
-	r.GET("/books", getAllBooks)
-	r.GET("/books/:id", getBook)
-	r.POST("/books/", createBook)
-	r.PUT("/books/:id", updateBook)
-	r.DELETE("/books/:id", deleteBook)
+
+	// Routes
+	r.GET("/books", getAllBooksController)
+	r.GET("/books/:id", getBookController)
+	r.POST("/books", createBookController)
+	r.PUT("/books/:id", updateBookController)
+	r.DELETE("/books/:id", deleteBookController)
+
 	r.Run(":4042")
+
 }
