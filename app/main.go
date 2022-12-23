@@ -2,7 +2,7 @@ package main
 
 import (
 	"library/http/controller"
-	repository "library/repository/inmemory"
+	repository "library/repository/firestore"
 	"library/usecases"
 
 	"github.com/gin-gonic/gin"
@@ -11,7 +11,7 @@ import (
 func main() {
 
 	// Repositories
-	bookRepository := repository.NewInMemoryBookRepository()
+	bookRepository := repository.NewFireStoreBookRepository()
 
 	// Usecases
 	getAllBooksUseCase := usecases.NewGetAllBooksUseCase(bookRepository)
