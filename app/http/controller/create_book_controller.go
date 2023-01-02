@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type createBookControllerInput struct {
+type CreateBookControllerInput struct {
 	Title   string   `json:"title" binding:"required"`
 	Authors []string `json:"authors" binding:"required"`
 	Year    int      `json:"year" binding:"required"`
@@ -15,7 +15,7 @@ type createBookControllerInput struct {
 	Pages   int      `json:"pages" binding:"required"`
 }
 
-type createBookControllerOutput struct {
+type CreateBookControllerOutput struct {
 	ID      string   `json:"id"`
 	Title   string   `json:"title"`
 	Authors []string `json:"authors"`
@@ -27,7 +27,7 @@ type createBookControllerOutput struct {
 func CreateBookController(u usecases.CreateBookUseCase) gin.HandlerFunc {
 	return func(g *gin.Context) {
 
-		var input createBookControllerInput
+		var input CreateBookControllerInput
 
 		if err := g.ShouldBindJSON(&input); err != nil {
 			g.JSON(http.StatusBadRequest, invalidJsonFormatError)
@@ -44,11 +44,11 @@ func CreateBookController(u usecases.CreateBookUseCase) gin.HandlerFunc {
 			})
 
 		if err != nil {
-			g.JSON(http.StatusBadRequest, outputMessage{err.Error()})
+			g.JSON(http.StatusInternalServerError, outputMessage{err.Error()})
 			return
 		}
 
-		output := &createBookControllerOutput{
+		output := &CreateBookControllerOutput{
 			ID:      UseCaseOutput.ID,
 			Title:   UseCaseOutput.Title,
 			Authors: UseCaseOutput.Authors,
