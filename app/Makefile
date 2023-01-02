@@ -4,6 +4,9 @@ run:
 test: generate
 	go test library/usecases
 
+testc: generate
+	go test library/usecases -cover
+
 clean-mocks:
 	rm ./*/mock_*
 
