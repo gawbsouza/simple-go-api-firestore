@@ -1,16 +1,13 @@
 run:
 	go run main.go
 
-build:
-	go build
-
 test: generate
 	go test library/usecases
 
-clean_mocks:
+clean-mocks:
 	rm ./*/mock_*
 
 generate:
 	go generate ./...
 
-.PHONY: test, clean_mocks, generate, run, build
+.PHONY: test, clean_mocks, generate, run
