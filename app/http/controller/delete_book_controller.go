@@ -7,10 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type deleteBookControllerInput struct {
-	ID string `json:"id" binding:"required"`
-}
-
 func DeleteBookController(u usecases.DeleteBookUseCase) gin.HandlerFunc {
 	return func(g *gin.Context) {
 
