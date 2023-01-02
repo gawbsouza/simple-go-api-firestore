@@ -4,11 +4,11 @@ run:
 
 # Run tests without coverage
 t:
-	go test library/usecases
+	go test library/usecases library/http/controller
 
 # Run tests with coverage
 tc:
-	go test library/usecases -cover
+	go test library/usecases library/http/controller -cover
 
 # Clean "temp" files
 clean:
