@@ -1,7 +1,6 @@
 FROM node:19-alpine
-RUN apk update && apk add bash
-RUN apk add openjdk11
 
+RUN apk update && apk add bash && apk add openjdk11
 RUN npm install -g firebase-tools
 
 WORKDIR /app
