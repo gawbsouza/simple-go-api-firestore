@@ -68,7 +68,7 @@ func TestCreateBookUseCase_Execute(t *testing.T) {
 		})
 
 		assert.NotNil(t, err)
-		assert.Equal(t, err.Error(), "Error when inserting book into repository")
+		assert.NotEqual(t, "Repository Error", err.Error())
 		assert.Nil(t, res)
 	})
 

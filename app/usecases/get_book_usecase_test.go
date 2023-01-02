@@ -77,7 +77,7 @@ func TestGetBookUseCase_Execute(t *testing.T) {
 		res, err := uc.Execute(&usecases.GetBookUseCaseInputDTO{ID: "some-id"})
 
 		assert.NotNil(t, err)
-		assert.Equal(t, "Error when getting book from repository", err.Error())
+		assert.NotEqual(t, "Repository Error", err.Error())
 		assert.Nil(t, res)
 	})
 

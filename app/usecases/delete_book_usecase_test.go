@@ -59,4 +59,22 @@ func TestDeleteBookUseCase_Execute(t *testing.T) {
 
 		assert.Nil(t, err)
 	})
+
+	t.Run("Repository Error", func(t *testing.T) {
+
+		controller := gomock.NewController(t)
+		defer controller.Finish()
+
+		mockRepository := usecases.NewMockDeleteBookUseCaseRepository(controller)
+		mockRepository.
+			EXPECT().
+			Delete(gomock.Any()).
+			Return(errors.New("Repository Error"))
+
+		uc := usecases.NewDeleteBookUseCase(mockRepository)
+		err := uc.Execute(&usecases.DeleteBookUseCaseInputDTO{ID: "some-id"})
+
+		assert.NotNil(t, err)
+		assert.NotEqual(t, "Repository Error", err.Error())
+	})
 }
