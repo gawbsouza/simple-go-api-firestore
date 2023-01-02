@@ -5,7 +5,6 @@ import (
 	"errors"
 	"library/entity"
 	"library/repository"
-	"os"
 
 	"cloud.google.com/go/firestore"
 	"github.com/google/uuid"
@@ -17,11 +16,9 @@ type rep struct {
 	client *firestore.Client
 }
 
-func NewFireStoreBookRepository() repository.BookRepository {
+func NewFireStoreBookRepository(project_id string) repository.BookRepository {
 
-	client, _ := firestore.NewClient(
-		context.Background(),
-		os.Getenv("FIREBASE_PROJECT_ID"))
+	client, _ := firestore.NewClient(context.Background(), project_id)
 
 	return &rep{client}
 }

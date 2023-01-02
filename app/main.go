@@ -4,6 +4,7 @@ import (
 	"library/http/controller"
 	repository "library/repository/firestore"
 	"library/usecases"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,7 +12,7 @@ import (
 func main() {
 
 	// Repositories
-	bookRepository := repository.NewFireStoreBookRepository()
+	bookRepository := repository.NewFireStoreBookRepository(os.Getenv("FIREBASE_PROJECT_ID"))
 
 	// Usecases
 	getAllBooksUseCase := usecases.NewGetAllBooksUseCase(bookRepository)
