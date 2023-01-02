@@ -1,16 +1,21 @@
+# Build and run main file
 run:
 	go run main.go
 
-test: generate
+# Run tests without coverage
+t: gen
 	go test library/usecases
 
-testc: generate
+# Run tests with coverage
+tc: gen
 	go test library/usecases -cover
 
-clean-mocks:
+# Clean "temp" files
+clean:
 	rm ./*/mock_*
 
-generate:
+# Generate files
+gen:
 	go generate ./...
 
-.PHONY: test, clean_mocks, generate, run
+.PHONY: t tc, clean, gen, run
