@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type getAllBooksControllerOutput struct {
+type GetAllBooksControllerOutput struct {
 	ID      string   `json:"id"`
 	Title   string   `json:"title"`
 	Authors []string `json:"authors"`
@@ -22,7 +22,7 @@ func GetAllBooksController(u usecases.GetAllBooksUseCase) gin.HandlerFunc {
 		useCaseOutput, err := u.Execute()
 
 		if err != nil {
-			g.JSON(http.StatusBadRequest, internalServerError)
+			g.JSON(http.StatusInternalServerError, internalServerError)
 			return
 		}
 
@@ -31,11 +31,11 @@ func GetAllBooksController(u usecases.GetAllBooksUseCase) gin.HandlerFunc {
 			return
 		}
 
-		var output []getAllBooksControllerOutput
+		var output []GetAllBooksControllerOutput
 
 		for _, book := range useCaseOutput {
 
-			output = append(output, getAllBooksControllerOutput{
+			output = append(output, GetAllBooksControllerOutput{
 				ID:      book.ID,
 				Title:   book.Title,
 				Authors: book.Authors,
