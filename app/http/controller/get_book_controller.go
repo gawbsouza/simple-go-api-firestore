@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type getBookControllerOutput struct {
+type GetBookControllerOutput struct {
 	ID      string   `json:"id"`
 	Title   string   `json:"title"`
 	Authors []string `json:"authors"`
@@ -36,7 +36,7 @@ func GetBookController(u usecases.GetBookUseCase) gin.HandlerFunc {
 			return
 		}
 
-		output := getBookControllerOutput{
+		output := GetBookControllerOutput{
 			ID:      UseCaseOutput.ID,
 			Title:   UseCaseOutput.Title,
 			Authors: UseCaseOutput.Authors,
