@@ -3,11 +3,11 @@ run:
 	go run main.go
 
 # Run tests without coverage
-t: gen
+t:
 	go test library/usecases
 
 # Run tests with coverage
-tc: gen
+tc:
 	go test library/usecases -cover
 
 # Clean "temp" files
