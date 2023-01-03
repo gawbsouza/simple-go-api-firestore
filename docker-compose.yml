@@ -9,3 +9,6 @@ services:
 
   firebase:
     build: ./firebase
+    ports:
+     - 4343:4343
+     - 4242:4242
